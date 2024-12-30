@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Platform</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- Navigation Tabs -->
+        <div class="navbar">
+            <button class="tablink" onclick="openTab(event, 'ecommerce')">E-Commerce</button>
+            <button class="tablink" onclick="openTab(event, 'chat')">Chat</button>
+            <button class="tablink" onclick="openTab(event, 'calls')">Video/Audio Calls</button>
+            <button class="tablink" onclick="openTab(event, 'freeSpeech')">Free Speech</button>
+        </div>
+
+        <!-- E-commerce Tab Content -->
+        <div id="ecommerce" class="tabcontent">
+            <h2>Buy & Sell Products</h2>
+            <div class="product">
+                <img src="https://via.placeholder.com/150" alt="Product Image">
+                <div class="product-info">
+                    <h3>Product Name</h3>
+                    <p>$199.99</p>
+                    <button class="btn">Buy Now</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Tab Content -->
+        <div id="chat" class="tabcontent">
+            <h2>End-to-End Encrypted Chat</h2>
+            <div id="chatBox" class="chat-box">
+                <div class="message">
+                    <span>User1:</span>
+                    <p>Hi, how are you?</p>
+                </div>
+                <div class="message">
+                    <span>User2:</span>
+                    <p>I'm good! What about you?</p>
+                </div>
+            </div>
+            <input type="file" id="fileInput" accept="image/*,video/*">
+            <input type="text" id="messageInput" placeholder="Type a message">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+
+        <!-- Video/Audio Calls Tab Content -->
+        <div id="calls" class="tabcontent">
+            <h2>Video/Audio Calls</h2>
+            <div class="call-interface">
+                <button onclick="startCall('audio')">Start Audio Call</button>
+                <button onclick="startCall('video')">Start Video Call</button>
+            </div>
+        </div>
+
+        <!-- Free Speech Tab Content -->
+        <div id="freeSpeech" class="tabcontent">
+            <h2>Share Your Opinion</h2>
+            <textarea id="opinionInput" placeholder="Share your opinion..."></textarea>
+            <button onclick="postOpinion()">Post Opinion</button>
+            <div id="opinions">
+                <p><strong>User1:</strong> I believe in freedom of expression!</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

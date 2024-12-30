@@ -1,0 +1,111 @@
+/* Basic CSS reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Navigation bar styling */
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    background-color: #333;
+    padding: 10px;
+}
+
+.navbar button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.navbar button:hover {
+    background-color: #45a049;
+}
+
+/* Tab content styling */
+.tabcontent {
+    display: none;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ddd;
+    margin-top: 20px;
+}
+
+#ecommerce .product {
+    display: flex;
+    margin: 20px 0;
+}
+
+#ecommerce .product img {
+    max-width: 150px;
+    margin-right: 20px;
+}
+
+#ecommerce .product-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#chat .chat-box {
+    background-color: #e1e1e1;
+    padding: 10px;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+#chat .message {
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+#calls .call-interface button {
+    padding: 15px;
+    margin: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#freeSpeech textarea {
+    width: 100%;
+    height: 100px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+#freeSpeech #opinions {
+    margin-top: 20px;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Buttons */
+button {
+    padding: 10px;
+    font-size: 14px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}

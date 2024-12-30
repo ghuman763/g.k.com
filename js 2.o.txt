@@ -1,0 +1,62 @@
+function openTab(evt, tabName) {
+    // Hide all tab content
+    let i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Remove active class from all tabs
+    tablinks = document.getElementsByClassName("tablink");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the selected tab and add active class to the button
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+// Default open tab
+document.querySelector(".tablink").click();
+
+// Function to send a message in the chat
+function sendMessage() {
+    const messageInput = document.getElementById("messageInput");
+    const chatBox = document.getElementById("chatBox");
+    const message = messageInput.value.trim();
+
+    if (message) {
+        const newMessage = document.createElement("div");
+        newMessage.classList.add("message");
+        newMessage.innerHTML = `<span>User:</span><p>${message}</p>`;
+        chatBox.appendChild(newMessage);
+        messageInput.value = ''; // Clear input
+    }
+}
+
+// Function to handle file input (sending images/videos)
+document.getElementById("fileInput").addEventListener("change", function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        alert(`You selected a file: ${file.name}`);
+    }
+});
+
+// Function to start audio or video call
+function startCall(type) {
+    alert(`Starting a ${type} call...`);
+}
+
+// Function to post opinion in the Free Speech tab
+function postOpinion() {
+    const opinionInput = document.getElementById("opinionInput").value.trim();
+    const opinionsDiv = document.getElementById("opinions");
+
+    if (opinionInput) {
+        const opinion = document.createElement("p");
+        opinion.innerHTML = `<strong>User:</strong> ${opinionInput}`;
+        opinionsDiv.appendChild(opinion);
+        document.getElementById("opinionInput").value = ''; // Clear input
+    }
+}

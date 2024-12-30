@@ -1,0 +1,45 @@
+// chatController.js
+const crypto = require('crypto');
+const ChatMessage = require('../models/ChatMessage');
+
+const encryptMessage = (message, secretKey) => {
+    const cipher = crypto.createCipher('aes-256-cbc', secretKey);
+    let encrypted = cipher.update(message, 'utf8', 'hex');
+    encrypted += cipher.final('hex');
+    return encrypted;
+};
+
+const decryptMessage = (encryptedMessage, secretKey) => {
+    const decipher = crypto.createDecipher('aes-256-cbc', secretKey);
+    let decrypted = decipher.update(encryptedMessage, 'hex', 'utf8');
+    decrypted += decipher.final('utf8');
+    return decrypted;
+};
+
+const sendMessage = async (req, res) => {
+    const { chatId, message, secretKey } = req.body;
+
+    try {
+        const encryptedMessage = encryptMessage(message, secretKey);
+        const newMessage = await ChatMessage.create({ chatId, encryptedMessage });
+
+        res.status(200).json({ message: 'Message sent', newMessage });
+    } catch (error) {
+        res.status(500).json({ message: 'Error sending message', error });
+    }
+};
+
+const getMessages = async (req, res) => {
+    const { chatId, secretKey } = req.query;
+
+    try {
+        const messages = await ChatMessage.find({ chatId });
+        const decryptedMessages = messages.map(msg => decryptMessage(msg.encryptedMessage, secretKey));
+        
+        res.status(200).json(decryptedMessages);
+    } catch (error) {
+        res.status(500).json({ message: 'Error retrieving messages', error });
+    }
+};
+
+module.exports = { sendMessage, getMessages };

@@ -1,0 +1,25 @@
+// fileController.js
+const AWS = require('aws-sdk');
+const multer = require('multer');
+const s3 = new AWS.S3();
+
+const upload = multer({ dest: 'uploads/' });
+
+const uploadFile = (req, res) => {
+    const file = req.file;
+    const params = {
+        Bucket: process.env.AWS_BUCKET_NAME,
+        Key: `uploads/${file.originalname}`,
+        Body: fs.createReadStream(file.path),
+    };
+
+    s3.upload(params, (err, data) => {
+        if (err) {
+            res.status(500).json({ message: 'Error uploading file', error: err });
+        } else {
+            res.status(200).json({ message: 'File uploaded successfully', fileUrl: data.Location });
+        }
+    });
+};
+
+module.exports = { uploadFile };

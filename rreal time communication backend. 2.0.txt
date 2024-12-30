@@ -1,0 +1,30 @@
+// socketController.js
+const io = require('socket.io')(server);
+const users = {};
+
+io.on('connection', socket => {
+    console.log(`User connected: ${socket.id}`);
+
+    socket.on('join', (username) => {
+        users[socket.id] = username;
+        socket.broadcast.emit('user-connected', username);
+    });
+
+    socket.on('offer', (offer, to) => {
+        socket.to(to).emit('offer', offer);
+    });
+
+    socket.on('answer', (answer, to) => {
+        socket.to(to).emit('answer', answer);
+    });
+
+    socket.on('ice-candidate', (candidate, to) => {
+        socket.to(to).emit('ice-candidate', candidate);
+    });
+
+    socket.on('disconnect', () => {
+        const username = users[socket.id];
+        delete users[socket.id];
+        socket.broadcast.emit('user-disconnected', username);
+    });
+});
